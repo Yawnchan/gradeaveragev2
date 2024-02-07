@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class GradeAverageVersionTwo {
+
+    public static double average(double[] values) {
+        double sum = 0;
+        for (double value : values) {
+            sum += value;
+        }
+        return sum / values.length;
+    }
+
+    public static char gradeLetter(double[] grades) {
+        double avg = average(grades);
+
+        if (avg >= 90) {
+            return 'A';
+        } else if (avg >= 80) {
+            return 'B';
+        } else if (avg >= 75) {
+            return 'C';
+        } else if (avg >= 70) {
+            return 'D';
+        } else {
+            return 'F';
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get the number of grades from the user
+        System.out.println("How many grades does the student have?");
+        int numGrades = scanner.nextInt();
+
+        // Initialize an array to store grades
+        double[] grades = new double[numGrades];
+
+        // Prompt the user to enter each grade individually
+        for (int i = 0; i < numGrades; i++) {
+            System.out.println("Enter grade " + (i + 1) + ":");
+            grades[i] = scanner.nextDouble();
+        }
+
+        // Calculate the average and determine the grade letter
+        double avg = average(grades);
+        char letter = gradeLetter(grades);
+
+        // Display the results
+        System.out.printf("The student's average is %.2f.\n", avg);
+        System.out.printf("The student's grade letter is a(n) %c.\n", letter);
+
+        scanner.close();
+    }
+}
